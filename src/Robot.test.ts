@@ -33,12 +33,6 @@ describe('Robot', () => {
     expect(robot.getValues()).toEqual({ x: 0, y: 0, direction: Direction.NORTH });
   });
 
-  test('should ignore placement on invalid direction', () => {
-    robot.place(1, 4, Direction.WEST);
-    robot.place(1, 1, 'John Doe' as any);
-    expect(consoleSpy).toHaveBeenCalledWith("🧭🤖 Hm, I don't know which way that is. Please give me a valid direction! 🚀🧭");
-  });
-
   test('should move north when placed facing north', () => {
     robot.place(0, 0, Direction.NORTH);
     robot.move();

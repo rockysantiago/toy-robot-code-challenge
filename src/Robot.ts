@@ -21,13 +21,8 @@ export class Robot {
   }
 
   public place(x: number, y: number, direction: Direction): void {
-    if (x < 0 || x > 4 || y < 0 || y > 4) {
+    if (x < 0 || x > 4 || y < 0 || y > 4 || !Object.values(Direction).includes(direction)) {
       console.log("🛑🤖 Oops! That spot's off-limits for me. Please place me within the table! 🚀🗺️");
-      return;
-    }
-
-    if (!Object.values(Direction).includes(direction)) {
-      console.log("🧭🤖 Hm, I don't know which way that is. Please give me a valid direction! 🚀🧭");
       return;
     }
 
