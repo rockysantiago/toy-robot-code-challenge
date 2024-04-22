@@ -2,6 +2,11 @@ import readline from 'readline'
 import { parseCommand } from './parseCommand';
 import { Robot } from './Robot';
 
+function refreshCLI(robot: Robot): void {
+  console.clear();
+  console.log(robot.getGridRepresentation());
+}
+
 function main(): void {
   const robot = new Robot();
   const rl = readline.createInterface({
@@ -14,11 +19,12 @@ function main(): void {
 
   rl.on('line', (line: string) => {
     const command = line.trim().toUpperCase();
-    if (command === 'QUIT' || command === 'Q') {
+    if (command === 'QUIT' || command === 'Q') {      
       rl.close();
       console.log("👋🤖 Exiting Robot CLI. Goodbye and see you later!");
     } else {
-      parseCommand(robot, command);
+      parseCommand(robot, command); // Assume this executes the command
+      refreshCLI(robot); // Refresh the CLI to show the updated grid
     }
   });
 }

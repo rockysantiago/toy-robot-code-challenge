@@ -85,4 +85,30 @@ export class Robot {
   public getValues() {
     return { x: this.position.x, y: this.position.y, direction: this.direction };
   }
+
+  public getGridRepresentation(): string {
+    let grid: string[][] = new Array(5).fill(null).map(() => new Array(5).fill(' '));
+    
+    if (this.isPlaced) {
+      const directionSymbol = {
+        [Direction.NORTH]: '↑',
+        [Direction.EAST]: '→',
+        [Direction.SOUTH]: '↓',
+        [Direction.WEST]: '←'
+      }[this.direction];
+      grid[this.position.y][this.position.x] = directionSymbol;
+    }
+    
+    const horizontalLine = '+---+---+---+---+---+';
+  
+    let gridString = horizontalLine + '\n';
+    
+    grid.reverse().forEach(row => {
+      const rowString = '| ' + row.join(' | ') + ' |';
+      gridString += rowString + '\n' + horizontalLine + '\n';
+    });
+  
+    return gridString;
+  }
+  
 }
